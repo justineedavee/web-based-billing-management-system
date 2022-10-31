@@ -1,11 +1,18 @@
+import { useState } from 'react'
 
 import SideBar from '../components/SideBar'
 import StudentDashboard from '../components/student/StudentDashboard'
+import StudentPaymentForm from '../components/student/StudentPaymentForm'
 
 import { Box, Container } from '@mui/material'
 
 export default function StudentAccess(){
     
+    const [tab, setTab] = useState(1)
+    const changeTab = (index) => {
+        setTab(index)
+    }
+
     return(
         <Container 
             sx={{
@@ -16,7 +23,7 @@ export default function StudentAccess(){
             }}
         >
             
-            <SideBar />
+            <SideBar changeTab={changeTab} tab={tab}/>
             <Box 
                 sx={{ 
                     bgcolor: '#fff', 
@@ -29,7 +36,8 @@ export default function StudentAccess(){
                     overflowY: 'auto'
                 }} 
             >
-                <StudentDashboard />
+                {tab === 1 && <StudentDashboard />}
+                {tab === 2 && <StudentPaymentForm />}
             </Box>
         </Container>
     )
