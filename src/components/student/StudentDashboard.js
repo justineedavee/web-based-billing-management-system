@@ -9,7 +9,6 @@ import SchoolIcon from '@mui/icons-material/School';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import PercentIcon from '@mui/icons-material/Percent';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
-import { color } from "@mui/system";
 
 
 const StudentDashboard = () => {
@@ -49,7 +48,21 @@ const StudentDashboard = () => {
       "status": "Denied",
       "reason": "User-centric transitional array",
       "person_in_charge": "Adelbert Piscopello"
-    }]
+    },{
+        "id": 6,
+        "amount": "$0.29",
+        "date": "02/10/2023",
+        "status": "Denied",
+        "reason": "User-centric transitional array",
+        "person_in_charge": "Adelbert Piscopello"
+      },{
+        "id": 7,
+        "amount": "$0.29",
+        "date": "02/10/2023",
+        "status": "Denied",
+        "reason": "User-centric transitional array",
+        "person_in_charge": "Adelbert Piscopello"
+      }]
 
     return (
         <Container>
@@ -60,7 +73,8 @@ const StudentDashboard = () => {
                 mt="20px"
                 sx={{ 
                     display: 'grid', 
-                    gridTemplateColumns: '1fr 1fr 1fr', 
+                    gridTemplateColumns: '1fr 1fr 1fr',
+                    columnGap: '5rem',
                     rowGap: '2.5rem',
                     gridTemplateRows: 'auto',
 
@@ -69,7 +83,7 @@ const StudentDashboard = () => {
                 <Box 
                     sx={{
                         boxShadow: '0 7px 15px 0 rgba(0, 0, 0, .13), 0 1px 4px 0 rgba(0, 0, 0, .11)',
-                        width: '300px',
+                        width: '100%',
                         height: '80px',
                         borderRadius: '16px',
                         padding: '10px',
@@ -98,7 +112,7 @@ const StudentDashboard = () => {
                 <Box 
                     sx={{
                         boxShadow: '0 7px 15px 0 rgba(0, 0, 0, .13), 0 1px 4px 0 rgba(0, 0, 0, .11)',
-                        width: '300px',
+                        width: '100%',
                         height: '80px',
                         borderRadius: '16px',
                         padding: '10px',
@@ -127,7 +141,7 @@ const StudentDashboard = () => {
                 <Box 
                     sx={{
                         boxShadow: '0 7px 15px 0 rgba(0, 0, 0, .13), 0 1px 4px 0 rgba(0, 0, 0, .11)',
-                        width: '300px',
+                        width: '100%',
                         height: '80px',
                         borderRadius: '16px',
                         padding: '10px',
@@ -156,7 +170,7 @@ const StudentDashboard = () => {
                 <Box 
                     sx={{
                         boxShadow: '0 7px 15px 0 rgba(0, 0, 0, .13), 0 1px 4px 0 rgba(0, 0, 0, .11)',
-                        width: '300px',
+                        width: '100%',
                         height: '80px',
                         borderRadius: '16px',
                         padding: '10px',
@@ -185,7 +199,7 @@ const StudentDashboard = () => {
                 <Box 
                     sx={{
                         boxShadow: '0 7px 15px 0 rgba(0, 0, 0, .13), 0 1px 4px 0 rgba(0, 0, 0, .11)',
-                        width: '300px',
+                        width: '100%',
                         height: '80px',
                         borderRadius: '16px',
                         padding: '10px',
@@ -214,7 +228,7 @@ const StudentDashboard = () => {
                 <Box 
                     sx={{
                         boxShadow: '0 7px 15px 0 rgba(0, 0, 0, .13), 0 1px 4px 0 rgba(0, 0, 0, .11)',
-                        width: '300px',
+                        width: '100%',
                         height: '80px',
                         borderRadius: '16px',
                         padding: '10px',
@@ -246,37 +260,45 @@ const StudentDashboard = () => {
                 mt="50px"
                 sx={{
                     boxShadow: '0 7px 15px 0 rgba(0, 0, 0, .13), 0 1px 4px 0 rgba(0, 0, 0, .11)',
-                    padding: '10px',
+                    padding: '25px',
                     borderRadius: '16px'
                 }}
             >
-                <h3>Pending & Denied Transactions</h3>
-                <TableContainer>
-                    <Table sx={{ minWidth: 650 }}>
+                <span style={{ fontSize: '1.25rem' }}>Pending & Denied Transactions</span>
+                <TableContainer sx={{ mt: '20px', overflow: 'scroll', maxHeight: 400}}>
+                    <Table stickyHeader sx={{ minWidth: 650}}>
                         <TableHead>
-                            <TableRow>
-                                <TableCell>Transaction ID</TableCell>
-                                <TableCell>Amount Paid</TableCell>
-                                <TableCell>Date</TableCell>
-                                <TableCell>Payment Status</TableCell>
-                                <TableCell>Reason</TableCell>
-                                <TableCell>Person in Charge</TableCell>
-                                <TableCell>Remarks</TableCell>
+                            <TableRow  sx={{
+                                        color: "#cfe8fc",
+                                        "& th": {
+                                        fontFamily: 'inherit',
+                                        color: '#06c'
+                                        
+                                    }
+                                }}>
+                                <TableCell align="center">Transaction ID</TableCell>
+                                <TableCell align="center">Amount Paid</TableCell>
+                                <TableCell align="center">Date</TableCell>
+                                <TableCell align="center">Payment Status</TableCell>
+                                <TableCell align="center">Reason</TableCell>
+                                <TableCell align="center">Person in Charge</TableCell>
+                                <TableCell align="center">Remarks</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
                            {data.map(item => (
                                <TableRow
+                                    align="right"
                                     key={item.id}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                >
-                                   <TableCell>{item.id}</TableCell>
-                                   <TableCell>{item.amount}</TableCell>
-                                   <TableCell>{item.date}</TableCell>
-                                   <TableCell sx={{ color: item.status === 'Pending' ? "blue" : "red" }}>{item.status}</TableCell>
-                                   <TableCell>{item.reason}</TableCell>
-                                   <TableCell>{item.person_in_charge}</TableCell>
-                                   <TableCell>{item.status !== 'Pending' && <Button variant='contained'>Resubmit</Button>}</TableCell>
+                                   <TableCell align="center">{item.id}</TableCell>
+                                   <TableCell align="center">{item.amount}</TableCell>
+                                   <TableCell align="center">{item.date}</TableCell>
+                                   <TableCell align="center" sx={{ color: item.status === 'Pending' ? "#06c" : "crimson" }}>{item.status}</TableCell>
+                                   <TableCell align="center">{item.reason}</TableCell>
+                                   <TableCell align="center">{item.person_in_charge}</TableCell>
+                                   <TableCell align="center">{item.status !== 'Pending' && <Button variant='contained'>Resubmit</Button>}</TableCell>
                                </TableRow>
                            ))}
                         </TableBody>
